@@ -1,0 +1,12 @@
+.metadata/**
+OutOfCore/.classpath
+OutOfCore/.project
+OutOfCore/.settings/**
+OutOfCore/SecurityAuth.audit
+OutOfCore/bin/**
+OutOfCore/build.xml
+OutOfCore/lib/**
+.DS_Store
+*~
+
+
