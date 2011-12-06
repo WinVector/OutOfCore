@@ -1,5 +1,6 @@
 package com.winvector.consolidate.example;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map.Entry;
 import java.util.SortedMap;
@@ -11,6 +12,7 @@ import com.winvector.consolidate.def.DataAdapter;
 import com.winvector.consolidate.def.RelnCollector;
 import com.winvector.consolidate.impl.FileRelnCollector;
 import com.winvector.consolidate.impl.ISetAdapter;
+import com.winvector.consolidate.impl.ISetPairAdapter;
 import com.winvector.consolidate.impl.InMemoryRelnCollector;
 
 public final class AdditiveSets {
@@ -36,12 +38,13 @@ public final class AdditiveSets {
 		final int k = (int)Math.floor(Math.sqrt(n));
 		System.out.println("Examining sums of " + k + " integers chosen from 0 through " + (n-1) + " modulo " + mod + ".");
 		final DataAdapter<SortedSet<Integer>> adapter = new ISetAdapter();
+		final DataAdapter<ArrayList<SortedSet<Integer>>> pairadapter = new ISetPairAdapter(adapter);
 		@SuppressWarnings("unchecked")
-		final RelnCollector<SortedSet<Integer>,SortedSet<Integer>>[] collectors = new RelnCollector[] {
-			new FileRelnCollector<SortedSet<Integer>,SortedSet<Integer>>(adapter,adapter,"/usr/bin/sort"),
-			new InMemoryRelnCollector<SortedSet<Integer>,SortedSet<Integer>>(adapter,adapter),
+		final RelnCollector<SortedSet<Integer>,ArrayList<SortedSet<Integer>>>[] collectors = new RelnCollector[] {
+			new FileRelnCollector<SortedSet<Integer>,ArrayList<SortedSet<Integer>>>(adapter,pairadapter,"/usr/bin/sort"),
+			new InMemoryRelnCollector<SortedSet<Integer>,ArrayList<SortedSet<Integer>>>(adapter,pairadapter),
 		};
-		for(final RelnCollector<SortedSet<Integer>,SortedSet<Integer>> collector: collectors) {
+		for(final RelnCollector<SortedSet<Integer>,ArrayList<SortedSet<Integer>>> collector: collectors) {
 			final Date start = new Date();
 			final String collectorName = collector.getClass().getCanonicalName();
 			System.out.println("Start\t" + collectorName + "\t" + start);
@@ -50,7 +53,10 @@ public final class AdditiveSets {
 			for(final SortedSet<Integer> s1: sets) {
 				for(final SortedSet<Integer> s2: sets) {
 					final SortedSet<Integer> sum = sum(s1,s2,mod);
-					collector.insertReln(sum,s1);
+					final ArrayList<SortedSet<Integer>> pair = new ArrayList<SortedSet<Integer>>(2);
+					pair.add(s1);
+					pair.add(s2);
+					collector.insertReln(sum,pair);
 					//System.out.println("\t" + s1 + "\t" + s2 + "\t" + sum);
 					++nReln;
 				}
@@ -59,19 +65,32 @@ public final class AdditiveSets {
 			// get distribution of number of summands
 			long nSums = 0;
 			long nSummands = 0;
-			final Iterable<Entry<SortedSet<Integer>,Iterable<SortedSet<Integer>>>> solns = collector.entries();
+			final Iterable<Entry<SortedSet<Integer>, Iterable<ArrayList<SortedSet<Integer>>>>> solns = collector.entries();
 			final SortedMap<Integer,Integer> counts = new TreeMap<Integer,Integer>();
-			for(final Entry<SortedSet<Integer>,Iterable<SortedSet<Integer>>> me: solns) {
+			int minSize = Integer.MAX_VALUE;
+			SortedSet<Integer> target = null;
+			SortedSet<ArrayList<SortedSet<Integer>>> pairs = null;
+			for(final Entry<SortedSet<Integer>, Iterable<ArrayList<SortedSet<Integer>>>> me: solns) {
 				// copy values into a set
-				final Iterable<SortedSet<Integer>> summandsIt = me.getValue();
-				final SortedSet<SortedSet<Integer>> summands = new TreeSet<SortedSet<Integer>>(adapter);
-				for(final SortedSet<Integer> v: summandsIt) {
+				final Iterable<ArrayList<SortedSet<Integer>>> summandsIt = me.getValue();
+				final SortedSet<ArrayList<SortedSet<Integer>>> summands = new TreeSet<ArrayList<SortedSet<Integer>>>(pairadapter);
+				for(final ArrayList<SortedSet<Integer>> v: summandsIt) {
 					summands.add(v);
+				}
+				if((target==null)||(summands.size()<minSize)) {
+					minSize = summands.size();
+					target = me.getKey();
+					pairs = summands;
 				}
 				nSums += 1;
 				nSummands += summands.size();
 				final Integer tally = counts.get(summands.size());
 				counts.put(summands.size(),null==tally?1:tally+1);
+			}
+			{
+				for(final ArrayList<SortedSet<Integer>> v: pairs) {
+					System.out.println(" " + v.get(0) + " + " + v.get(1) + " = " + target);
+				}
 			}
 			collector.close();
 			System.out.println("\tExamined " + nSums + " sums and " + nSummands + " summands.");

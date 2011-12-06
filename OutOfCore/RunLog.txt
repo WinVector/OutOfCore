@@ -1,31 +1,50 @@
 Examining sums of 4 integers chosen from 0 through 18 modulo 19.
-Start	com.winvector.consolidate.impl.FileRelnCollector	Mon Dec 05 15:24:04 PST 2011
+Start	com.winvector.consolidate.impl.FileRelnCollector	Tue Dec 06 09:54:20 PST 2011
 	Inserted 15023376 relations.
-	Examined 128820 sums and 12459915 summands.
+ [0, 1, 4, 5] + [10, 11, 14, 15] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [0, 1, 15, 16] + [0, 14, 15, 18] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [0, 3, 4, 18] + [11, 12, 15, 16] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [0, 14, 15, 18] + [0, 1, 15, 16] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [1, 2, 5, 6] + [9, 10, 13, 14] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [1, 2, 16, 17] + [13, 14, 17, 18] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [2, 3, 6, 7] + [8, 9, 12, 13] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [2, 3, 17, 18] + [12, 13, 16, 17] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [3, 4, 7, 8] + [7, 8, 11, 12] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [4, 5, 8, 9] + [6, 7, 10, 11] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [5, 6, 9, 10] + [5, 6, 9, 10] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [6, 7, 10, 11] + [4, 5, 8, 9] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [7, 8, 11, 12] + [3, 4, 7, 8] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [8, 9, 12, 13] + [2, 3, 6, 7] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [9, 10, 13, 14] + [1, 2, 5, 6] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [10, 11, 14, 15] + [0, 1, 4, 5] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [11, 12, 15, 16] + [0, 3, 4, 18] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [12, 13, 16, 17] + [2, 3, 17, 18] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+ [13, 14, 17, 18] + [1, 2, 16, 17] = [0, 1, 10, 11, 12, 14, 15, 16, 18]
+	Examined 128820 sums and 15023376 summands.
 	found 3705 sums with 19 distinct summands
 	found 39900 sums with 38 distinct summands
-	found 10089 sums with 57 distinct summands
-	found 22572 sums with 76 distinct summands
-	found 9576 sums with 95 distinct summands
-	found 10773 sums with 114 distinct summands
-	found 5472 sums with 133 distinct summands
-	found 6669 sums with 152 distinct summands
-	found 2052 sums with 171 distinct summands
-	found 5301 sums with 190 distinct summands
-	found 2565 sums with 209 distinct summands
-	found 3762 sums with 228 distinct summands
-	found 2223 sums with 247 distinct summands
-	found 1083 sums with 266 distinct summands
-	found 855 sums with 304 distinct summands
-	found 684 sums with 323 distinct summands
-	found 513 sums with 342 distinct summands
-	found 513 sums with 380 distinct summands
-	found 171 sums with 475 distinct summands
+	found 26847 sums with 76 distinct summands
+	found 22230 sums with 114 distinct summands
+	found 10602 sums with 152 distinct summands
+	found 8892 sums with 190 distinct summands
+	found 2736 sums with 228 distinct summands
+	found 5016 sums with 266 distinct summands
+	found 2736 sums with 304 distinct summands
+	found 1710 sums with 342 distinct summands
+	found 171 sums with 361 distinct summands
+	found 1710 sums with 380 distinct summands
+	found 855 sums with 418 distinct summands
+	found 342 sums with 456 distinct summands
 	found 342 sums with 532 distinct summands
-Done:	com.winvector.consolidate.impl.FileRelnCollector	elapsed time: 425461MS	Mon Dec 05 15:31:10 PST 2011
-Start	com.winvector.consolidate.impl.InMemoryRelnCollector	Mon Dec 05 15:31:10 PST 2011
+	found 342 sums with 570 distinct summands
+	found 171 sums with 722 distinct summands
+	found 171 sums with 760 distinct summands
+	found 171 sums with 912 distinct summands
+	found 171 sums with 1026 distinct summands
+Done:	com.winvector.consolidate.impl.FileRelnCollector	elapsed time: 618473MS	Tue Dec 06 10:04:38 PST 2011
+Start	com.winvector.consolidate.impl.InMemoryRelnCollector	Tue Dec 06 10:04:38 PST 2011
 Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
-	at java.util.TreeMap.put(TreeMap.java:518)
+	at java.util.TreeMap.put(TreeMap.java:554)
 	at java.util.TreeSet.add(TreeSet.java:238)
-	at com.winvector.consolidate.example.AdditiveSets.sum(AdditiveSets.java:23)
-	at com.winvector.consolidate.example.AdditiveSets.main(AdditiveSets.java:52)
+	at com.winvector.consolidate.example.AdditiveSets.sum(AdditiveSets.java:25)
+	at com.winvector.consolidate.example.AdditiveSets.main(AdditiveSets.java:55)
