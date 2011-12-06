@@ -1,7 +1,10 @@
 
 Example techiques for how to work out of core in Java.
-Intended to be backed by an article on http://www.win-vector.com/blog/ .
-License: GPLv3 (see: http://www.gnu.org/copyleft/gpl.html )
+
+see:
+ http://www.win-vector.com/blog/2011/12/what-to-do-when-you-run-out-of-memory/
+
+Copyright 2011 Win Vector LLC distributed withl license: GPLv3 (see: http://www.gnu.org/copyleft/gpl.html )
 
 Requires:
   <a target="_blank" href="http://www.junit.org/">JUnit 4.10</a>, 
