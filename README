@@ -3,3 +3,9 @@ Example techiques for how to work out of core in Java.
 Intended to be backed by an article on http://www.win-vector.com/blog/ .
 License: GPLv3 (see: http://www.gnu.org/copyleft/gpl.html )
 
+Requires:
+  <a target="_blank" href="http://www.junit.org/">JUnit 4.10</a>, 
+  <a target="_blank" href="http://www.h2database.com/html/main.html">h2 database</a>, 
+  <a target="_blank" href="http://hadoop.apache.org/mapreduce/releases.html">Hadoop 0.21.0</a> 
+
+

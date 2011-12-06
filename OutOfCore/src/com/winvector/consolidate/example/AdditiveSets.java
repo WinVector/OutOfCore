@@ -31,7 +31,7 @@ public final class AdditiveSets {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		final int n = 20;
+		final int n = 19;
 		final int mod = n;
 		final int k = (int)Math.floor(Math.sqrt(n));
 		System.out.println("Examining sums of " + k + " integers chosen from 0 through " + (n-1) + " modulo " + mod + ".");
